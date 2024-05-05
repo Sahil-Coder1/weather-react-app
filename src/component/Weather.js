@@ -5,7 +5,6 @@ import precipitation from '../images/precipitation.png';
 import wind from '../images/wind.png';
 import Pressure from '../images/pressure.png';
 import { useEffect, useState } from "react";
-import axios from "axios";
 import marker from "../images/marker.png";
 
 const Weather = () => {
@@ -36,8 +35,9 @@ const Weather = () => {
 
     const FetchD = async (location) => {
         try {
-            const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305&q=${location}`);
-            setWeather(response.data);
+            const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305&q=${location}`);
+            const data = await response.json();
+            setWeather(data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
