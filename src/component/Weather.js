@@ -56,7 +56,7 @@ const Weather = () => {
             <div className='head'>
                 <img src={logo} alt='logo' className='logo-icon' />
                 <div className='web-name'>ClimateTown</div>
-                <div className="locationNow"><img src={marker}/><p>{weatherData ? weatherData.location.name+","+ weatherData.location.country : null}</p></div>
+                <div className="locationNow"><img src={marker} alt=''/><p>{weatherData ? weatherData.location.name+","+ weatherData.location.country : null}</p></div>
             </div>
             <div className='search'>
                 <input
@@ -84,8 +84,9 @@ const Weather = () => {
                         <tr>
                             <td colSpan='2'>
                                 <div className='note'>
-                                    Stay indoors during peak sun hours, hydrate frequently, and avoid strenuous activities to prevent heatstroke and dehydration.
-                                </div>
+                                <p className="heading1">Condition</p>
+                                    <p>{weatherData ? weatherData.current.condition.text : <p>.</p>}</p>
+                                     </div>
                             </td>
                             <td>
                                 <div className='precipitation'>

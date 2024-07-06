@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body{
-    background-color: silver;
     font-family: Montserrat;
+   
 }
 .head{
     height: 80px;
-    background-color: #e3dfdf;
-}
+  
+   }
 .logo-icon{
     position: absolute;
     height: 100px;
@@ -28,32 +28,47 @@ body{
 
 }
 .search input{
-    padding: 16px;
+    padding: 16px 25px;
     width: 600px;
     border-radius: 50px;
     outline: none;
     border: none;
     font-size: 20px;
      font-family: Montserrat;
+     border-radius: 50px;
+     background: #a497b4;
+     box-shadow:  5px 5px 6px #665e70,
+                  -5px -5px 6px #e2d0f8;
+    
 }
-.current{
-    background-color: #d0d0d0;
-    height: 400px;
-    width: 400px;
+.search input::placeholder{
+    color: #271939;
+}
+.current{   
+    height: 350px;
+    width: 350px;
     border-radius: 50px;
     margin-left: 16px;
-   
+    border-radius: 50px;
+background: #56387E;
+box-shadow: inset 50px 50px 100px #271939,
+            inset -50px -50px 100px #8557c3;
+    
 }
 .current-sub1{
     display: flex;
+}
+.current-sub1 p{
+    margin-top: 40px;
+   margin-left  : -10px;
 }
 .current p{
     padding-left: 50px;
     color: white;
     font-weight: 800;
-    font-size: 22px;
+    font-size: 20px;
     width: 60%;
-    height: 30px;
+    height: 20px;
 }
 .temp{
     height: 100px;
@@ -63,31 +78,66 @@ body{
 .temp-now p{
     font-size: 80px;
     line-height: 0.1;
-    font-family:Montserrat;
+    font-family:Montserrat;  
+}
+.feelslike p{
+    font-size: 15px;
+  padding-left: 16px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.main{
+    background: hsla(266, 38%, 36%, 1);
+
+    background: linear-gradient(90deg, hsla(266, 38%, 36%, 1) 0%, hsla(0, 0%, 93%, 1) 100%);
+    
+    background: -moz-linear-gradient(90deg, hsla(266, 38%, 36%, 1) 0%, hsla(0, 0%, 93%, 1) 100%);
+    
+    background: -webkit-linear-gradient(90deg, hsla(266, 38%, 36%, 1) 0%, hsla(0, 0%, 93%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#56387E", endColorstr="#EEEEEE", GradientType=1 );
+      
+    height: 100vh;
 }
 .details{
     display: flex;
+    justify-content: center;
+  
 }
 table{
     margin-left: 20px;
     text-align: center;
     margin-top: -20px;
 }
+.heading1{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -5px;
+}
 .note{
-    height: 150px;
-    background-color: #fff;
+    height: 100px;
     width: 550px;
     border-radius: 50px;
     padding: 16px;
     font-size: 20px;
+    color: white;
+    font-weight: 500;
     text-align: center;
-    
+    border-radius: 50px;
+    background: linear-gradient(145deg, #9488a2, #afa2c1);
+    box-shadow:  5px 5px 10px #4a4451,
+                 -2px -2px 5px #feeaff;
 }
 .precipitation{
-    height: 200px;
-    width: 280px;
-    background-color:  #d0d0d0;
+    height: 170px;
+    width: 280px;   
     border-radius: 50px;
+background: linear-gradient(145deg, #9488a2, #afa2c1);
+box-shadow:  5px 5px 10px #4a4451,
+             -2px -2px 5px #feeaff;
 }
 .precipitation h1{
     display: inline-flex;
@@ -96,19 +146,21 @@ table{
     color: white;
 }
 .small-icon{
-    height: 80px;
+    object-fit:fill;
+    height: 40px;
     padding-left: 20px;
+    padding-top: 10px;
 }
 .precipitation p{
-    width: 150px;
-    font-size: 60px;
+    width: 100px;
+    font-size: 30px;
     display: inline-flex;
     line-height: 0;
     padding-left: 8px;
 }
 .precipitation h3{
 
-    font-size: 20px;
+    font-size: 10px;
 }
 .locationNow{
     display: inline-flex;
@@ -117,12 +169,100 @@ table{
     font-size: 25px;
     text-align: center;
    top: 20px;
+   color: white;
+   font-weight: 500;
+   padding: 4px 16px;
+   border-radius: 50px;
+background: #56387E;
+box-shadow: 5px 5px 10px #35234e,
+            -2px -2px 5px #774dae;
 }
 .locationNow p{
-    padding-bottom: 20px;
+    
     line-height: 0;
 }
 .locationNow img{
+    filter: invert(1);
     padding-top: 12px;
       height: 30px;
+}
+
+@media only screen and (max-width:768px) {
+
+    .main{
+        width: 100vh;
+    }
+    .logo-icon{
+        height: 40px;
+        width: 50px;
+        margin-left: -20px;
+    }
+    .web-name{
+        margin-left: 90px;
+        font-size: 20px;
+        margin-top: 25px;
+    }
+    .locationNow img{
+        width: 15px;
+        height: 15px;
+        margin: 0px;
+        padding:2px 4px 0px 0px;
+      display: flex;
+    }
+    .locationNow{
+        font-size: 10px;
+       height: 20px;
+    }
+    .details{
+        display: block;
+    }
+    .precipitation{
+        height: 120px;
+        width: 200px;   
+        border-radius: 50px;
+    background: linear-gradient(145deg, #9488a2, #afa2c1);
+    box-shadow:  5px 5px 10px #4a4451,
+                 -2px -2px 5px #feeaff;
+    }
+    .search input{
+        width: 70vh;
+    }
+    table{
+        margin-left: 0px;
+        text-align: center;
+        margin-top: 20px;
+       display: inline-block;
+    }
+    .precipitation{
+        height: 100px;
+        width: 200px;   
+        border-radius: 50px;
+    background: linear-gradient(145deg, #9488a2, #afa2c1);
+    box-shadow:  5px 5px 10px #4a4451,
+                 -2px -2px 5px #feeaff;
+    }
+    .current{   
+        height: 150px;
+        width: 150px;
+        border-radius: 50px;
+        margin-left: 16px;
+    background: #56387E;
+    box-shadow: inset 50px 50px 100px #271939,
+                inset -50px -50px 100px #8557c3;
+    }
+    .current-sub1{
+        display: flex;
+    }
+    .current-sub1 p{
+        margin-top: 40px;
+       margin-left  : -10px;
+    }
+    .current p{
+        padding-left: 50px;
+        color: white;
+        font-weight: 800;
+        font-size: 20px;
+        width: 60%;
+        height: 20px;
+    }
 }
