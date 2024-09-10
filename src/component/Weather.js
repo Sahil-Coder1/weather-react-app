@@ -81,7 +81,7 @@ const Weather = () => {
         <div className="option">
             <ul type='none'>
           {suggestions.map((suggestion, index) => (
-            <li key={index}>
+            <li key={index} onClick={FetchD(suggestion)}>
               {suggestion}
             </li>
           ))}
