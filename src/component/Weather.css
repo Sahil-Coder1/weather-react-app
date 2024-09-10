@@ -30,12 +30,11 @@ body{
 .search input{
     padding: 16px 25px;
     width: 600px;
-    border-radius: 50px;
+    border-radius:  50px 50px 0px 0px;
     outline: none;
     border: none;
     font-size: 20px;
      font-family: Montserrat;
-     border-radius: 50px;
      background: #a497b4;
      box-shadow:  5px 5px 6px #665e70,
                   -5px -5px 6px #e2d0f8;
@@ -266,3 +265,50 @@ box-shadow: 5px 5px 10px #35234e,
         height: 20px;
     }
 }
+.search ul{
+    position: relative;
+    top: 10px; /* Adjust top value to position above the input */
+    background-color: transparent;
+    width: 100vh;
+    z-index: 1000;
+    margin: 0 auto;
+    max-height: 200px;
+    overflow-y: auto;
+    left: -28px;
+    text-decoration: none;
+}
+.search ul li{
+    min-width: 300px;
+    background-color: silver;
+    border-radius: 50px;
+    font-size: 20px;
+    padding: 4px;
+    margin: 2px 0px;
+    cursor: pointer;
+}
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    
+  }
+  ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #888; /* Color of the thumb */
+    border-radius: 6px; /* Roundness of the thumb */
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the track */
+    border-radius: 50px;
+  }
+  .option{
+    position: relative;
+    top: -10px; /* Adjust top value to position above the input */
+    background-color: #a497b4;
+    width: 649.025px;
+    z-index: 1000;
+    margin: 0 auto;
+    max-height: 250px;
+    border-radius: 0px 0px 50px 50px;
+   padding-bottom: 30px;
+   box-shadow:  5px 5px 6px #665e70,
+   0px 0px 0px #e2d0f8;
+  }
