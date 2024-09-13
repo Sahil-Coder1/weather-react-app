@@ -11,6 +11,7 @@ const Weather = () => {
     const [inputValue, setInputValue] = useState("");
     const [weatherData, setWeather] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
+    const [API, setAPI] = useState("https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305");
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -26,7 +27,7 @@ const Weather = () => {
 
     const FetchData = async (lat, lon) => {
         try {
-            const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305&q=${lat},${lon}`);
+            const response = await fetch(`${API}&q=${lat},${lon}`);
             const data = await response.json();
             setWeather(data);
         } catch (error) {
@@ -36,7 +37,7 @@ const Weather = () => {
 
     const FetchD = async (location) => {
         try {
-            const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305&q=${location}`);
+            const response = await fetch(`${API}&q=${location}`);
             const data = await response.json();
             setWeather(data);
         } catch (error) {
