@@ -3,47 +3,46 @@ import logo from '../images/t.png';
 import humidity from '../images/humidity.png';
 import precipitation from '../images/precipitation.png';
 import wind from '../images/wind.png';
-import Pressure from '../images/pressure.png';
-import { useEffect, useState } from "react";
+import pressure from '../images/pressure.png';
 import marker from "../images/marker.png";
+import { useEffect, useState } from "react";
 
 const Weather = () => {
     const [inputValue, setInputValue] = useState("");
     const [weatherData, setWeather] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
-    const [API, setAPI] = useState("https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305");
+    const [isToggle, setIsToggle] = useState(false);
+    const API = 'https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305';
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
-            FetchD(inputValue);
+            fetchWeather(inputValue);
         }
-    }
+    };
+
+    const fetchWeather = async (query) => {   
+        setIsToggle(false)    
+        try {
+            const response = await fetch(`${API}&q=${query}`);
+            const data = await response.json();
+            setWeather(data);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+        }
+        
+    };
 
     const getLocation = (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        FetchData(lat, lon);
-    }
+        fetchWeather(`${lat},${lon}`);
+    };
 
-    const FetchData = async (lat, lon) => {
-        try {
-            const response = await fetch(`${API}&q=${lat},${lon}`);
-            const data = await response.json();
-            setWeather(data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-
-    const FetchD = async (location) => {
-        try {
-            const response = await fetch(`${API}&q=${location}`);
-            const data = await response.json();
-            setWeather(data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
+    const handleAutocomplete = () => {
+        const regex = new RegExp(inputValue, 'i'); // 'i' makes it case-insensitive
+        const matches = options.filter(option => regex.test(option)); // Filter options using regex
+        setSuggestions(matches);
+    };
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -53,102 +52,109 @@ const Weather = () => {
         }
     }, []);
 
-    const handleAutocomplete = () => {
-        const matches = autocomplete(inputValue);
-        setSuggestions(matches);
-        console.log(matches);
-      };
-      
-
     return (
         <div className='main'>
             <div className='head'>
                 <img src={logo} alt='logo' className='logo-icon' />
                 <div className='web-name'>ClimateTown</div>
-                <div className="locationNow"><img src={marker} alt=''/><p>{weatherData ? weatherData.location.name+","+ weatherData.location.country : null}</p></div>
+                <div className="locationNow">
+                    <img src={marker} alt='' />
+                    <p>{weatherData ? `${weatherData.location.name}, ${weatherData.location.country}` : null}</p>
+                </div>
             </div>
+
             <div className='search'>
                 <input
-                id="autocomplete"
-                className="autocomplete"
+                    id="autocomplete"
+                    className="autocomplete"
                     type='text'
                     placeholder='Search location'
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyUp={handleKeyPress}
-                    onBlur={handleAutocomplete}
+                    onClick={() => setIsToggle(true)}
+                    onChange={(e) => {
+                        setInputValue(e.target.value);
+                        handleAutocomplete(); // Trigger autocomplete on input change
+                    }}
+                    onKeyPress={handleKeyPress}
+                    // onBlur={() => setIsToggle(false)}
                 />
-                 {suggestions.length > 0 && (
-        <div className="option">
-            <ul type='none'>
-          {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={FetchD(suggestion)}>
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-        </div>
-      )}
+                {isToggle && suggestions.length > 0 && (
+                    <div className="option">
+                        <ul type='none'>
+                            {suggestions.map((suggestion, index) => (
+                                <li key={index} onClick={() => fetchWeather(suggestion) && setInputValue(suggestion)}>
+                                    {suggestion}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
+
+            {/* Weather details */}
             <div className='details'>
                 <div className='current'>
                     <div className='current-sub1'>
-                        <p>Current Climate</p><img src={weatherData ? weatherData.current.condition.icon: logo} alt='temp' className='temp' />
+                        <p>Current Climate</p>
+                        <img src={weatherData ? weatherData.current.condition.icon : logo} alt='temp' className='temp' />
                     </div>
                     <div className='temp-now'>
-                        <p>{weatherData ? weatherData.current.temp_c + "°C" : <p>.</p>}</p>
+                        <p>{weatherData ? `${weatherData.current.temp_c}°C` : "."}</p>
                     </div>
                     <div className='feelslike'>
-                        <p>Feels Like {weatherData ? weatherData.current.feelslike_c + "°C in " +weatherData.location.name : <p>.</p>}</p>
+                        <p>Feels Like {weatherData ? `${weatherData.current.feelslike_c}°C in ${weatherData.location.name}` : "."}</p>
                     </div>
                 </div>
+
                 <div className='others'>
                     <table cellPadding='8'>
-                        <tr>
-                            <td colSpan='2'>
-                                <div className='note'>
-                                <p className="heading1">Condition</p>
-                                    <p>{weatherData ? weatherData.current.condition.text : <p>.</p>}</p>
-                                     </div>
-                            </td>
-                            <td>
-                                <div className='precipitation'>
-                                    <h1>Precipitation</h1><br />
-                                    <img src={precipitation} alt='precipitation' className='small-icon' />
-                                    <p>{weatherData ? weatherData.current.precip_mm + "%" : <p>.</p>}</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div className='precipitation'>
-                                    <h1>Pressure</h1><br />
-                                    <img src={Pressure} alt='precipitation' className='small-icon' />
-                                    <p>{weatherData ? weatherData.current.pressure_in + "" : <p>.</p>}</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='precipitation'>
-                                    <h1>Wind</h1><br />
-                                    <img src={wind} alt='precipitation' className='small-icon' />
-                                    <p>{weatherData ? weatherData.current.wind_kph : <p>.</p>}<br /><h3>kph</h3></p>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='precipitation'>
-                                    <h1>Humidity</h1><br />
-                                    <img src={humidity} alt='precipitation' className='small-icon' />
-                                    <p>{weatherData ? weatherData.current.humidity : <p>.</p>}</p>
-                                </div>
-                            </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td colSpan='2'>
+                                    <div className='note'>
+                                        <p className="heading1">Condition</p>
+                                        <p>{weatherData ? weatherData.current.condition.text : "."}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='precipitation'>
+                                        <h1>Precipitation</h1>
+                                        <img src={precipitation} alt='precipitation' className='small-icon' />
+                                        <p>{weatherData ? `${weatherData.current.precip_mm}%` : "."}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div className='precipitation'>
+                                        <h1>Pressure</h1>
+                                        <img src={pressure} alt='pressure' className='small-icon' />
+                                        <p>{weatherData ? weatherData.current.pressure_in : "."}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='precipitation'>
+                                        <h1>Wind</h1>
+                                        <img src={wind} alt='wind' className='small-icon' />
+                                        <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='precipitation'>
+                                        <h1>Humidity</h1>
+                                        <img src={humidity} alt='humidity' className='small-icon' />
+                                        <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
+
         </div>
     );
 }
-
 var options = ["Andhra Pradesh", "Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa",
     "Arunachal Pradesh", "Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kamle", "Kra Daadi", "Kurung Kumey", "Lepa Rada", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Dibang Valley", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang",
     "Assam", "Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong",
@@ -178,9 +184,11 @@ var options = ["Andhra Pradesh", "Anantapur", "Chittoor", "East Godavari", "Gunt
     "Uttarakhand", "Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi",
     "West Bengal", "Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur (South Dinajpur)", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Medinipur (West Medinipur)", "Paschim (West) Burdwan (Bardhaman)", "Purba Burdwan (Bardhaman)", "Purba Medinipur (East Medinipur)", "Purulia", "South 24 Parganas", "Uttar Dinajpur (North Dinajpur)"
 ];
+
 const autocomplete = (req) => {
     const termRegex = new RegExp("^" + req, "i");
     const matches = options.filter(item => termRegex.test(item));
     return matches;
-  };
+  }
+
 export default Weather;
