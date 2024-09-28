@@ -133,19 +133,24 @@ const Weather = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <div className='precipitation'>
-                                        <h1>Wind</h1>
-                                        <img src={wind} alt='wind' className='small-icon' />
-                                        <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='precipitation'>
-                                        <h1>Humidity</h1>
-                                        <img src={humidity} alt='humidity' className='small-icon' />
-                                        <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
-                                    </div>
-                                </td>
+    <div className='weather-detail'>
+        <h3>Wind</h3>
+        <div className='detail-info'>
+            <img src={wind} alt='wind' className='small-icon' />
+            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
+        </div>
+    </div>
+</td>
+<td>
+    <div className='weather-detail'>
+        <h3>Humidity</h3>
+        <div className='detail-info'>
+            <img src={humidity} alt='humidity' className='small-icon' />
+            <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
+        </div>
+    </div>
+</td>
+
                             </tr>
                         </tbody>
                     </table>
