@@ -8,7 +8,7 @@ import marker from "../images/marker.png";
 import { useEffect, useState } from "react";
 
 const Weather = () => {
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(" ");
     const [weatherData, setWeather] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
     const [isToggle, setIsToggle] = useState(false);
@@ -20,16 +20,16 @@ const Weather = () => {
         }
     };
 
-    const fetchWeather = async (query) => {   
-        setIsToggle(false)    
+    const fetchWeather = async (query) => {
+        setIsToggle(false)
         try {
             const response = await fetch(`${API}&q=${query}`);
             const data = await response.json();
             setWeather(data);
         } catch (error) {
-            console.error('Error fetching weather data:', error);
+            console.error('Error fetching the weather data:', error);
         }
-        
+
     };
 
     const getLocation = (position) => {
@@ -48,7 +48,7 @@ const Weather = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getLocation);
         } else {
-            console.log("Geolocation is not supported by this browser.");
+            console.log("not supported geolocation");
         }
     }, []);
 
@@ -76,7 +76,7 @@ const Weather = () => {
                         handleAutocomplete(); // Trigger autocomplete on input change
                     }}
                     onKeyPress={handleKeyPress}
-                    // onBlur={() => setIsToggle(false)}
+                // onBlur={() => setIsToggle(false)}
                 />
                 {isToggle && suggestions.length > 0 && (
                     <div className="option">
@@ -133,23 +133,23 @@ const Weather = () => {
                                     </div>
                                 </td>
                                 <td>
-    <div className='weather-detail'>
-        <h3>Wind</h3>
-        <div className='detail-info'>
-            <img src={wind} alt='wind' className='small-icon' />
-            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
-        </div>
-    </div>
-</td>
-<td>
-    <div className='weather-detail'>
-        <h3>Humidity</h3>
-        <div className='detail-info'>
-            <img src={humidity} alt='humidity' className='small-icon' />
-            <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
-        </div>
-    </div>
-</td>
+                                    <div className='weather-detail'>
+                                        <h3>Wind</h3>
+                                        <div className='detail-info'>
+                                            <img src={wind} alt='wind' className='small-icon' />
+                                            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='weather-detail'>
+                                        <h3>Humidity</h3>
+                                        <div className='detail-info'>
+                                            <img src={humidity} alt='humidity' className='small-icon' />
+                                            <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
+                                        </div>
+                                    </div>
+                                </td>
 
                             </tr>
                         </tbody>
@@ -194,6 +194,6 @@ const autocomplete = (req) => {
     const termRegex = new RegExp("^" + req, "i");
     const matches = options.filter(item => termRegex.test(item));
     return matches;
-  }
+}
 
 export default Weather;
