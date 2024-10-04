@@ -27,7 +27,7 @@ const Weather = () => {
             const data = await response.json();
             setWeather(data);
         } catch (error) {
-            console.error('Error fetching the weather data:', error);
+            console.error('Error fetching the weather data : ', error);
         }
 
     };
@@ -41,7 +41,7 @@ const Weather = () => {
     const handleAutocomplete = () => {
         const regex = new RegExp(inputValue, 'i'); // 'i' makes it case-insensitive
         const matches = options.filter(option => regex.test(option)); // Filter options using regex
-        setSuggestions(matches);
+        setSuggestions(matches); //Matched 
     };
 
     useEffect(() => {
