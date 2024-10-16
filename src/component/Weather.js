@@ -99,10 +99,10 @@ const Weather = () => {
                         <img src={weatherData ? weatherData.current.condition.icon : logo} alt='temp' className='temp' />
                     </div>
                     <div className='temp-now'>
-                        <p>{weatherData ? `${weatherData.current.temp_c}°C` : "."}</p>
+                        <p>{weatherData ? `${weatherData.current.temp_c}°C` : null}</p>
                     </div>
                     <div className='feelslike'>
-                        <p>Feels Like {weatherData ? `${weatherData.current.feelslike_c}°C in ${weatherData.location.name}` : "."}</p>
+                        <p>Feels Like {weatherData ? `${weatherData.current.feelslike_c}°C in ${weatherData.location.name}` : null}</p>
                     </div>
                 </div>
 
@@ -113,14 +113,14 @@ const Weather = () => {
                                 <td colSpan='2'>
                                     <div className='note'>
                                         <p className="heading1">Condition</p>
-                                        <p>{weatherData ? weatherData.current.condition.text : "."}</p>
+                                        <p>{weatherData ? weatherData.current.condition.text : null}</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div className='precipitation'>
                                         <h1>Precipitation</h1>
                                         <img src={precipitation} alt='precipitation' className='small-icon' />
-                                        <p>{weatherData ? `${weatherData.current.precip_mm}%` : "."}</p>
+                                        <p>{weatherData ? `${weatherData.current.precip_mm}%` : null}</p>
                                     </div>
                                 </td>
                             </tr>
@@ -129,7 +129,7 @@ const Weather = () => {
                                     <div className='precipitation'>
                                         <h1>Pressure</h1>
                                         <img src={pressure} alt='pressure' className='small-icon' />
-                                        <p>{weatherData ? weatherData.current.pressure_in : "."}</p>
+                                        <p>{weatherData ? weatherData.current.pressure_in : null}</p>
                                     </div>
                                 </td>
                                 <td>
@@ -137,7 +137,7 @@ const Weather = () => {
                                         <h3>Wind</h3>
                                         <div className='detail-info'>
                                             <img src={wind} alt='wind' className='small-icon' />
-                                            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : "."}</p>
+                                            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : null}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -146,7 +146,7 @@ const Weather = () => {
                                         <h3>Humidity</h3>
                                         <div className='detail-info'>
                                             <img src={humidity} alt='humidity' className='small-icon' />
-                                            <p>{weatherData ? `${weatherData.current.humidity}%` : "."}</p>
+                                            <p>{weatherData ? `${weatherData.current.humidity}%` : null}</p>
                                         </div>
                                     </div>
                                 </td>
