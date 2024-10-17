@@ -137,7 +137,7 @@ const Weather = () => {
                                         <h3>Wind</h3>
                                         <div className='detail-info'>
                                             <img src={wind} alt='wind' className='small-icon' />
-                                            <p>{weatherData ? `${weatherData.current.wind_kph} kph` : null}</p>
+                                            <p>{weatherData ? `${weatherData.current.wind_kph} k/h` : null}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -146,7 +146,7 @@ const Weather = () => {
                                         <h3>Humidity</h3>
                                         <div className='detail-info'>
                                             <img src={humidity} alt='humidity' className='small-icon' />
-                                            <p>{weatherData ? `${weatherData.current.humidity}%` : null}</p>
+                                            <p>{weatherData ? `${weatherData.current.humidity} %` : null}</p>
                                         </div>
                                     </div>
                                 </td>
