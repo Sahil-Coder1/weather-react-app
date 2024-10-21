@@ -331,16 +331,13 @@ table {
 
 ::-webkit-scrollbar {
     width: 12px;
-    /* Width of the scrollbar */
 
 }
 
 ::-webkit-scrollbar-thumb {
     cursor: pointer;
     background-color: #888;
-    /* Color of the thumb */
     border-radius: 6px;
-    /* Roundness of the thumb */
 }
 
 ::-webkit-scrollbar-track {
