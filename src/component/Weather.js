@@ -28,9 +28,8 @@ const Weather = () => {
             const data = await response.json();
             setWeather(data);
         } catch (error) {
-            console.error('Error Fetching the Weather Data : ', error);
+            console.error('Error Fetching the Data : ', error);
         }
-
     };
 
     const getLocation = (position) => {
