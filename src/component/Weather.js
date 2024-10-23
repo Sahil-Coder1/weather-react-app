@@ -12,6 +12,7 @@ const Weather = () => {
     const [weatherData, setWeather] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
     const [isToggle, setIsToggle] = useState(false);
+
     const API = 'https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305';
 
     const handleKeyPress = (event) => {
@@ -27,7 +28,7 @@ const Weather = () => {
             const data = await response.json();
             setWeather(data);
         } catch (error) {
-            console.error('Error fetching the weather data : ', error);
+            console.error('Error Fetching the Weather Data : ', error);
         }
 
     };
