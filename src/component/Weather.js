@@ -75,7 +75,6 @@ const Weather = () => {
                         setInputValue(e.target.value);
                         handleAutocomplete(); // Trigger autocomplete on input change
                     }}
-                    onKeyPress={handleKeyPress}
                 // onBlur={() => setIsToggle(false)}
                 />
                 {isToggle && suggestions.length > 0 && (
