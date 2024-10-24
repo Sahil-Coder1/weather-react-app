@@ -56,7 +56,7 @@ const Weather = () => {
         <div className='main'>
             <div className='head'>
                 <img src={logo} alt='logo' className='logo-icon' />
-                <div className='web-name'>ClimateTown</div>
+                <div className='web-name'> ClimateTown </div>
                 <div className="locationNow">
                     <img src={marker} alt='' />
                     <p>{weatherData ? `${weatherData.location.name}, ${weatherData.location.country}` : null}</p>
@@ -73,7 +73,7 @@ const Weather = () => {
                     onClick={() => setIsToggle(true)}
                     onChange={(e) => {
                         setInputValue(e.target.value);
-                        handleAutocomplete(); // Trigger autocomplete on input change
+                        handleAutocomplete(); 
                     }}
                 // onBlur={() => setIsToggle(false)}
                 />
