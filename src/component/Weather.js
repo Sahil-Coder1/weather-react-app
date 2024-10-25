@@ -68,7 +68,7 @@ const Weather = () => {
                     id="autocomplete"
                     className="autocomplete"
                     type='text'
-                    placeholder='Search location'
+                    placeholder='Search ...'
                     value={inputValue}
                     onClick={() => setIsToggle(true)}
                     onChange={(e) => {
