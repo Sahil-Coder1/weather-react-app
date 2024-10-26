@@ -75,7 +75,7 @@ const Weather = () => {
                         setInputValue(e.target.value);
                         handleAutocomplete(); 
                     }}
-                // onBlur={() => setIsToggle(false)}
+                
                 />
                 {isToggle && suggestions.length > 0 && (
                     <div className="option">
