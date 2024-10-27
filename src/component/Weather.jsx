@@ -32,12 +32,6 @@ const Weather = () => {
 
   const API = import.meta.env.VITE_AI_WEATHER_API;
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      fetchWeather(inputValue);
-    }
-  };
-
   const fetchWeather = async (query) => {
     setIsToggle(false);
     try {
@@ -964,7 +958,8 @@ var options = [
   "Purba Burdwan (Bardhaman)",
   "Purba Medinipur (East Medinipur)",
   "Purulia",
-  "South 24 Parganas","Uttar Dinajpur (North Dinajpur)",
+  "South 24 Parganas",
+  "Uttar Dinajpur (North Dinajpur)",
 ];
 
 const autocomplete = (req) => {
