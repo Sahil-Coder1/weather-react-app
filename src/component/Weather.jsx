@@ -14,9 +14,8 @@ const Weather = () => {
   const [isToggle, setIsToggle] = useState(false);
   const [aiResponse, setaiResponse] = useState([]);
 
-  const baseURL = "https://api.together.ai/v1/chat/completions";
-  const apiKey =
-    "6ea90096f37465be79f62c6c3f57636d890dbf834938de5f5c9fd7d92bdcc635";
+  const baseURL = import.meta.env.VITE_AI_API;
+  const apiKey = import.meta.env.VITE_AI_API_KEY;
   let userPrompt = `You are a weather advisor. be precise and truthful , give me a single line health advisory response in 20 words based on following data : \n`;
 
   const resp = async (prompt) => {
@@ -31,8 +30,7 @@ const Weather = () => {
     setaiResponse(await data.json());
   };
 
-  const API =
-    "https://api.weatherapi.com/v1/current.json?key=f05fdd7091264238b5e74216240305";
+  const API = import.meta.env.VITE_AI_WEATHER_API;
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -219,9 +217,9 @@ const Weather = () => {
                     <h1>Wind</h1>
                     <div className="detail-info">
                       <img src={wind} alt="wind" className="small-icon" />
-                      <p>
+                      <p className="detail-info-2">
                         {weatherData
-                          ? `${weatherData.current.wind_kph} k/h`
+                          ? `${weatherData.current.wind_kph}km`
                           : null}
                       </p>
                     </div>

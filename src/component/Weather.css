@@ -211,6 +211,9 @@ table {
     padding-top: 12px;
     height: 30px;
 }
+.wind-info{
+    font-size: 2px;
+}
 
 @media only screen and (max-width:768px) {
 
@@ -246,6 +249,7 @@ table {
     .details {
         display: block;
     }
+   
 
     .precipitation {
         height: 120px;
