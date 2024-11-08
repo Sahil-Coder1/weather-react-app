@@ -16,7 +16,7 @@ const Weather = () => {
 
   const baseURL = import.meta.env.VITE_AI_API;
   const apiKey = import.meta.env.VITE_AI_API_KEY;
-  let userPrompt =`You are a weather advisor. be precise and truthful , give me a single line health advisory and preventions response in max 20 words based on following data : \n`;
+  let userPrompt =`give a 20-word health advisory focused on hydration, respiratory health, and heat by analyzing this data : \n`;
 
   const resp = async (prompt) => {
     const data = await fetch(baseURL, {
