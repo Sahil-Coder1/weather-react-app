@@ -31,7 +31,6 @@ const Weather = () => {
   };
 
   const API = import.meta.env.VITE_AI_WEATHER_API;
-
   const fetchWeather = async (query) => {
     setIsToggle(false);
     try {
@@ -39,7 +38,7 @@ const Weather = () => {
       const data = await response.json();
       setWeather(data);
       if (data && data.current) {
-        userPrompt += ` Temperature: ${data.current.temp_c}°C, Precipitation: ${data.current.precip_mm} mm, Pressure: ${data.current.pressure_in} in, Wind Speed: ${data.current.wind_kph} kph, Humidity: ${data.current.humidity}%`;
+        userPrompt += ` Temperature: (${data.current.temp_c}°C), Precipitation: ${data.current.precip_mm} mm, Pressure: ${data.current.pressure_in} in, Wind Speed: ${data.current.wind_kph} kph, Humidity: ${data.current.humidity}%`;
         let weatherDataa = {
           model: "meta-llama/Llama-Vision-Free",
           messages: [
