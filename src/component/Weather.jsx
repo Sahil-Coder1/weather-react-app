@@ -16,14 +16,14 @@ const Weather = () => {
 
   const baseURL = import.meta.env.VITE_AI_API;
   const apiKey = import.meta.env.VITE_AI_API_KEY;
-  let userPrompt =`give a 20-word health advisory focused on hydration, respiratory health, and heat by analyzing this data : \n`;
+  let userPrompt = `give a 20-word health advisory focused on hydration, respiratory health, and heat by analyzing this data : \n`;
 
   const resp = async (prompt) => {
     const data = await fetch(baseURL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
-        "Content-Type":"application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(prompt),
     });
